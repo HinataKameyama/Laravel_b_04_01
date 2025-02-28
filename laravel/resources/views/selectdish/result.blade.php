@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>結果表示画面</title>
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
 <body>
     <!--主食、主菜、副菜のデータがある場合に、各料理とカテゴリ、カロリーを表示-->
@@ -12,18 +13,26 @@
         {{ $selectedMain }}
         {{ $selectedSide }}
 
-        <!--選択した料理とそのカテゴリ、カロリー-->
-        @foreach ($selectedAll as $all)
-            <li>{{ $all -> category }}</li>
-            <li>{{ $all -> name }}</li>
-            <li>{{ $all -> calories }}</li>
-        @endforeach
-
-        <!--カロリーのみ抜き出した配列-->
-        @foreach ($selectedCalories as $calories)
-            <li>{{ $calories }}</li>
-        @endforeach
-
+        <!--選択した料理とそのカテゴリ、カロリーを表で表示-->
+        <table>
+            <thead>
+                <tr>
+                    <th>カテゴリ</th>
+                    <th>メニュー</th>
+                    <th>カロリー</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($selectedAll as $all)
+                    <tr>
+                        <td>{{ $all -> category }}</td>
+                        <td>{{ $all -> name }}</td>
+                        <td>{{ $all -> calories }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        
         <!--合計カロリー-->
         {{ $totalCalorie }}
 
@@ -31,5 +40,8 @@
         {{ $comment }}
 
     @endif
+
+    <br>
+    <div class="btn-back"><a href="/selectdish/create">料理選択画面に戻る</a></div>
 </body>
 </html>
