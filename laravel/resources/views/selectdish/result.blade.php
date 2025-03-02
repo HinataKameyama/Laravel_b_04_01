@@ -13,6 +13,20 @@
         {{ $selectedMain }}
         {{ $selectedSide }}
 
+        <!--選択されていないカテゴリがある場合、メッセージを表示-->
+        @if (!empty($msgCategory))
+        <ul>
+            @foreach ($msgCategory as $msg)
+                <li>{{ $msg }}</li>
+            @endforeach
+        </ul>
+        @endif
+
+        <!--合計カロリー-->
+        <p>{{ $totalCalorie }}</p>
+        <!--1000kcal以上の場合、メッセージを表示-->
+        <p>{{ $msgTotalCalorie }}</p>
+
         <!--選択した料理とそのカテゴリ、カロリーを表で表示-->
         <table>
             <thead>
@@ -32,9 +46,7 @@
                 @endforeach
             </tbody>
         </table>
-        
-        <!--合計カロリー-->
-        {{ $totalCalorie }}
+    
 
         <!--コメント-->
         {{ $comment }}
