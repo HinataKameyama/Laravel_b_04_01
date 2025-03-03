@@ -1,13 +1,9 @@
+@extends('layouts.app')
+@section('title', '結果表示画面') 
+
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>結果表示画面</title>
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-</head>
 <body>
-    <!--主食、主菜、副菜のデータがある場合に、各料理とカテゴリ、カロリーを表示-->
-    @if(isset($selectedStaple,$selectedMain,$selectedSide))
         <!--主食、主菜、副菜-->
         {{ $selectedStaple }}
         {{ $selectedMain }}
@@ -50,8 +46,8 @@
 
         <!--コメント-->
         {{ $comment }}
-
-    @endif
+        <!--コメントがない場合、メッセージを表示-->
+        {{ $msgComment }}
 
     <br>
     <div class="btn-back"><a href="/selectdish/create">料理選択画面に戻る</a></div>

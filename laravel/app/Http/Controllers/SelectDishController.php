@@ -44,7 +44,7 @@ class SelectDishController extends Controller
         $totalCalorie = array_sum($selectedCalories ->toArray());
 
         //合計カロリーが1000kcal以上の場合、メッセージを表示
-        $msgTotalCalorie = ($totalCalorie >= 1000) ? "1000kcal以上です" : "";
+        $msgTotalCalorie = ($totalCalorie >= 1000) ? "1000kcal以上です。" : "";
 
         //未選択のカテゴリがある場合、メッセージを表示
             // メッセージの配列を初期化
@@ -59,9 +59,9 @@ class SelectDishController extends Controller
             if (!$selectedSide) {
                 $msgCategory[] = "副菜が選択されていません。";
             }
-            if (!$comment) {
-                $msgCategory[] = "コメントが入力されていません。";
-            }
+
+        //コメントが入力されていない場合、メッセージを表示
+        $msgComment = (!$comment) ? "コメントが入力されていません。" : "";
                 
         //選択した料理の合計カロリーとコメントをb_04_01_calories_logテーブルに保存
           //モデルからインスタンスを生成
@@ -79,7 +79,7 @@ class SelectDishController extends Controller
         return view('selectdish.result', 
         compact('selectedStaple','selectedMain','selectedSide',
         'selectedAll','selectedCalories','totalCalorie','comment',
-        'msgTotalCalorie','msgCategory'));
+        'msgTotalCalorie','msgCategory','msgComment'));
 
     }
     
